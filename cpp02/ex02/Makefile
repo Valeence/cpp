@@ -6,7 +6,7 @@
 #    By: vandre <vandre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/05 22:44:57 by vandre            #+#    #+#              #
-#    Updated: 2024/09/05 22:45:07 by vandre           ###   ########.fr        #
+#    Updated: 2024/12/09 00:16:32 by vandre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ OBJ_DIR		:=		obj
 
 INCLUDE		=		include/Fixed.hpp
 
-NAME		=		Harl
+NAME		=		Cannon
 SRC			=		$(wildcard $(SRC_DIR)/*.cpp)
 OBJ			=		$(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)	
 

@@ -6,7 +6,7 @@
 /*   By: vandre <vandre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:02:45 by vandre            #+#    #+#             */
-/*   Updated: 2024/09/06 15:56:20 by vandre           ###   ########.fr       */
+/*   Updated: 2024/12/08 23:43:42 by vandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Fixed
                 Fixed();
                 Fixed(int const k);
 				Fixed(Fixed const &copy);
-                Fixed &operator=(Fixed const &other) throw();
+                Fixed &operator=(Fixed const &other);
                 ~Fixed();
                 int getRawBits(void) const;
                 void setRawBits( int const raw );

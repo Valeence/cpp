@@ -6,7 +6,7 @@
 /*   By: vandre <vandre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:01:59 by vandre            #+#    #+#             */
-/*   Updated: 2024/09/06 15:55:56 by vandre           ###   ########.fr       */
+/*   Updated: 2024/12/09 19:14:27 by vandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::Fixed(Fixed const &copy)
    *this = copy;
 }
 
-Fixed &Fixed::operator=(const Fixed &other) throw() 
+Fixed &Fixed::operator=(const Fixed &other)
 {
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other)

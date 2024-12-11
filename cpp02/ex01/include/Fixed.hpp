@@ -6,14 +6,15 @@
 /*   By: vandre <vandre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:02:45 by vandre            #+#    #+#             */
-/*   Updated: 2024/09/07 18:49:24 by vandre           ###   ########.fr       */
+/*   Updated: 2024/12/11 01:38:35 by vandre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-# include <iostream>
+#include <iostream>
+#include <cmath>
 
 class Fixed
 {
