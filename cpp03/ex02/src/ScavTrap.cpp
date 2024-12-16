@@ -30,6 +30,26 @@ ScavTrap::ScavTrap(std::string name)
 	std::cout << "ScavTrap " << _name << " create" << std::endl;
 }
 
+
+ScavTrap::ScavTrap(const ScavTrap &cpy)
+    : ClapTrap(cpy)
+{
+    std::cout << "ScavTrap " << cpy._name << " created by copy" << std::endl;
+}
+
+ScavTrap &ScavTrap::operator= (const ScavTrap &cpy)
+{
+	if (this != &cpy)
+	{
+		_name = cpy._name;
+		_hit = cpy._hit;
+		_energy = cpy._energy;
+		_attack = cpy._attack;
+	}
+	std::cout << "ScavTrap " << cpy._name << " create by operator" << std::endl;
+	return *this;
+}
+
 ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap " << ScavTrap::_name << " destructed" << std::endl;
@@ -37,11 +57,13 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (ScavTrap::_energy != 0 || ScavTrap::_hit > 0 ) 
-	{
-		std::cout << "ScavTrap " << ScavTrap::_name << " attacks " << target << ", causing " << ScavTrap::_attack << " points of damage!" << std::endl;
-		ScavTrap::_energy--;
+	if (this->_energy > 0 && this->_hit > 0) {
+    	std::cout << "ScavTrap " << this->_name << " attacks " << target
+    	          << ", causing " << this->_attack << " points of damage!" << std::endl;
+    	this->_energy--;
 	}
+	else
+		std::cout << "ScavTrap " << _name << " can't attack because he is dead or out of energy" << std::endl;
 }
 
 void ScavTrap::guardGate()

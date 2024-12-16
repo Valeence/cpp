@@ -29,6 +29,29 @@ ClapTrap::ClapTrap(std::string name)
 	_attack = 0;
 	std::cout << "ClapTrap " << name << " create" << std::endl;
 }
+
+ClapTrap::ClapTrap(const ClapTrap &cpy)
+{
+	_name = cpy._name;
+	_hit = cpy._hit;
+	_energy = cpy._energy;
+	_attack = cpy._attack;
+	std::cout << "ClapTrap " << cpy._name << " create by copy" << std::endl;
+}
+
+ClapTrap &ClapTrap::operator= (const ClapTrap &cpy)
+{
+	if (this != &cpy)
+	{
+		_name = cpy._name;
+		_hit = cpy._hit;
+		_energy = cpy._energy;
+		_attack = cpy._attack;
+	}
+	std::cout << "ClapTrap " << cpy._name << " create by operator" << std::endl;
+	return *this;
+}
+
 ClapTrap::~ClapTrap() 
 {
     std::cout << "ClapTrap destroyed" << std::endl;
@@ -36,40 +59,46 @@ ClapTrap::~ClapTrap()
 
 void ClapTrap::attack(const std::string& target)
 {
-	if (ClapTrap::_energy != 0 || ClapTrap::_hit > 0 ) 
-	{
-		std::cout << "ClapTrap " << ClapTrap::_name << " attacks " << target << ", causing " << ClapTrap::_attack << " points of damage!" << std::endl;
+	if (this->_energy > 0 && this->_hit > 0) {
+    	std::cout << "ClapTrap " << this->_name << " attacks " << target
+    	          << ", causing " << this->_attack << " points of damage!" << std::endl;
+    	this->_energy--;
 	}
+	else
+		std::cout << "ClapTrap " << _name << " can't attack because he is dead or out of energy" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (ClapTrap::_hit > 0) 
+    if (this->_hit > amount) 
     {
-		ClapTrap::_hit -= amount;
-		std::cout << "ClapTrap " << ClapTrap::_name << " has lost " << amount << " HP" << std::endl;
+		this->_hit -= amount;
+		std::cout << "ClapTrap " << this->_name << " has lost " << amount << " HP" << std::endl;
 	}
-    else
-        std::cout << "ClapTrap "<< _name << " has no health left" << std::endl;
+    else {
+        _hit = 0;
+		std::cout << "ClapTrap "<< _name << " has no health left" << std::endl;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (ClapTrap::_energy != 0)
-	{	
-		unsigned int i = ClapTrap::_hit + amount;
-		if (i < 50)
-		{
-			ClapTrap::_hit += amount;
-			std::cout << "ClapTrap " << ClapTrap::_name << " has now " << ClapTrap::_hit << std::endl;
-		}
-		else if (i >= 50)
-		{
-			ClapTrap::_hit = 50;
-			std::cout << "ClapTrap " << ClapTrap::_name << " has not max heal (50HP)";
-		}
-		ClapTrap::_energy--;
+	if (_energy > 0)
+	{
+    	unsigned int max_heal = 50 - _hit;
+    	unsigned int actual_heal = (amount > max_heal) ? max_heal : amount;
+
+	    _hit += actual_heal;
+    	_energy--;
+
+    	std::cout << "ClapTrap " << _name << " has been repaired by " << actual_heal
+        	      << " points. Current health: " << _hit << std::endl;
 	}
 	else
-		std::cout << "No energy left to repair" << std::endl;
+    	std::cout << "No energy left to repair." << std::endl;
+}
+
+std::string ClapTrap::getName() const
+{
+	return _name;
 }

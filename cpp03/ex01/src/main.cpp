@@ -16,7 +16,7 @@
 int main()
 {
 	ScavTrap valence("Violence");
-	ScavTrap nabil("Pabil");
+	//ScavTrap nabil("Pabil");
 
 	valence.attack("Pabil");
 	return 0;

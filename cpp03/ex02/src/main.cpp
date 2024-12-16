@@ -15,19 +15,25 @@
 #include "../include/FragTrap.hpp"
 
 
-int main()
-{
-	// ScavTrap valence("Violence");
-	// ScavTrap nabil("Pabil");
-	// valence.attack("Pabil");
+int main() {
+    std::cout << "=== Création des FragTraps ===" << std::endl;
 
-	FragTrap Dendrobate("dendrolance");
-	FragTrap DendroGames("Dendrobil");
+    FragTrap frag1("Fraggy");
+    FragTrap frag2(frag1);
 
+    std::cout << "\n=== Test des capacités ===" << std::endl;
 
-	Dendrobate.highFivesGuys();
-	DendroGames.takeDamage(5);
+    frag1.attack("EnemyBot");
+    frag1.takeDamage(20);
+    frag1.beRepaired(10);
 
+    std::cout << "\n=== Test de la capacité spéciale ===" << std::endl;
+    frag1.highFivesGuys();
 
-	return 0;
+    std::cout << "\n=== Assignation ===" << std::endl;
+    FragTrap frag3("AnotherFrag");
+    frag3 = frag1;
+
+    std::cout << "\n=== Fin du programme ===" << std::endl;
+    return 0;
 }
