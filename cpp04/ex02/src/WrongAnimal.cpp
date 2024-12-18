@@ -15,12 +15,25 @@
 WrongAnimal::WrongAnimal()
 {
 	_type = "wrong animal";
-	std::cout << "created a wrong animal" << std::endl;
+	std::cout << "constructor wrong animal called" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(const WrongAnimal &wrongAnimal)
+{
+	_type = wrongAnimal._type;
+	std::cout << "Copy constructor wrong animal called" << std::endl;
+}
+
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &wrongAnimal)
+{
+	_type = wrongAnimal._type;
+	std::cout << "Assignation operator wrong animal called" << std::endl;
+	return (*this);
 }
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "wrong animal destroyed" << std::endl;
+	std::cout << "destructor wrong animal called" << std::endl;
 }
 
 void WrongAnimal::makeSound() const

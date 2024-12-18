@@ -17,27 +17,52 @@
 #include "../include/WrongCat.hpp"
 #include "../include/Brain.hpp"
 
+#define NUM_ANIMALS 6
+
 int main()
 {
-    // const int number = 4;
-	// Animal* animal[number];
-	
-	// for (int i = 0; i < number / 2; i++)
-	// 	animal[i] = new Dog();
-	// for (int i = number / 2; i < number; i++)
-	// 	animal[i] = new Cat();
-    // return 0;
+    std::cout << "\n=== Construction d'un tableau d'Animaux ===" << std::endl;
 
-	// int i = 0;
-	// while (i<= number)
-	// {
-	// 	delete animal[i];
-	// 	i++;
-	// }
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+    Animal* animals[NUM_ANIMALS];
 
-	delete j;
-	delete i;
-	return 0;
+    for (int i = 0; i < NUM_ANIMALS / 2; ++i) {
+        animals[i] = new Dog();
+    }
+    for (int i = NUM_ANIMALS / 2; i < NUM_ANIMALS; ++i) {
+        animals[i] = new Cat();
+    }
+
+    std::cout << "\n=== Test des comportements des animaux ===" << std::endl;
+
+    for (int i = 0; i < NUM_ANIMALS; ++i) {
+        animals[i]->makeSound();
+    }
+
+    std::cout << "\n=== Copie profonde de Dog et Cat ===" << std::endl;
+
+    Dog originalDog;
+    originalDog.getBrain()->setIdea(0, "I love bones!");
+    Dog copiedDog(originalDog);
+    Dog assignedDog;
+    assignedDog = originalDog;
+
+    std::cout << "Original Dog idea[0]: " << originalDog.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Copied Dog idea[0]:   " << copiedDog.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Assigned Dog idea[0]: " << assignedDog.getBrain()->getIdea(0) << std::endl;
+
+    copiedDog.getBrain()->setIdea(0, "I love running!");
+
+    std::cout << "After modifying copied dog idea[0]:" << std::endl;
+    std::cout << "Original Dog idea[0]: " << originalDog.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Copied Dog idea[0]:   " << copiedDog.getBrain()->getIdea(0) << std::endl;
+    std::cout << "Assigned Dog idea[0]: " << assignedDog.getBrain()->getIdea(0) << std::endl;
+
+    std::cout << "\n=== Destruction des Animaux ===" << std::endl;
+
+    std::cout << "\n=== Destruction des Animaux ===" << std::endl;
+    for (int i = 0; i < NUM_ANIMALS; ++i) {
+        delete animals[i];
+    }
+    std::cout << "\n=== Fin du programme ===" << std::endl;
+    return 0;
 }

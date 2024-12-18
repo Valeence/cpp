@@ -15,13 +15,25 @@
 WrongCat::WrongCat()
 {
 	_type = "Mauvais Chat";
-	std::cout << "Created wrong cat" << std::endl;
+	std::cout << "Wrong Cat create" << std::endl;
 }
 
 WrongCat::~WrongCat()
 {
-	std::cout << "wrong cat destroyed" << std::endl;
+	std::cout << "Wrong Cat destroy" << std::endl;
 } 
+
+WrongCat::WrongCat(const WrongCat &wrongCat) : WrongAnimal(wrongCat)
+{
+	std::cout << _type << "Copy constructor wrong cat called" << std::endl;
+}
+
+WrongCat &WrongCat::operator=(const WrongCat &wrongCat)
+{
+	_type = wrongCat._type;
+	std::cout << "Assignation operator wrong cat called" << std::endl;
+	return (*this);
+}
 
 void WrongCat::makeSound() const
 {

@@ -16,6 +16,8 @@ class WrongAnimal
 {
 	public:
 		WrongAnimal();
+		WrongAnimal(const WrongAnimal &wrongAnimal);
+		WrongAnimal &operator=(const WrongAnimal &wrongAnimal);
 		~WrongAnimal();
 		void makeSound() const;
 		std::string getType() const;

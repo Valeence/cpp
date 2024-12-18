@@ -18,13 +18,16 @@
 class Brain
 {
 	public:
-	Brain();
-	~Brain();
-	Brain(const Brain& other);
-	Brain& operator=(const Brain& other);
-	std::string *ideas[100];
-	private:
-};
+		Brain();
+		~Brain();
+		Brain(const Brain& other);
+		Brain& operator=(const Brain& other);
+		static const int _ideasCount;
+		void setIdea(int index, std::string idea);
+		std::string getIdea(int index) const;
 
+	protected:
+		std::string ideas[100];
+};
 
 #endif

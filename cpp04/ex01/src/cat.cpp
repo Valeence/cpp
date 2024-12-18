@@ -12,20 +12,36 @@
 
 #include "../include/Cat.hpp"
 
-Cat::Cat()
-{
-	_type = "Chat";
-	std::cout << "Create a cat" << std::endl;
+Cat::Cat() {
+	_type = "Cat";
 	_brain = new Brain();
+	std::cout << "Constructor cat called" << std::endl;
 }
 
-Cat::~Cat()
-{
-	delete _brain;
-	std::cout << "destroyed cat" << std::endl;
-} 
+Cat::Cat(const Cat& cat) : Animal(cat) {
+	_brain = new Brain(*cat._brain); //deep copy
+	std::cout << "Copy constructor cat called" << std::endl;
+}
 
-void Cat::makeSound() const
-{
-	std::cout << "Miaouuu" << std::endl;
+Cat& Cat::operator=(const Cat& cat) {
+	if (this != &cat) {
+		Animal::operator=(cat);
+		delete _brain;
+		_brain = new Brain(*cat._brain);
+	}
+	std::cout << "Assignment operator cat called" << std::endl;
+	return *this;
+}
+
+Cat::~Cat() {
+	delete _brain;
+	std::cout << "Destructor cat called" << std::endl;
+}
+
+void Cat::makeSound() const {
+	std::cout << "Miaou Miaou" << std::endl;
+}
+
+Brain* Cat::getBrain() const {
+	return _brain;
 }

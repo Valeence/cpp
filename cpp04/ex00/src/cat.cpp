@@ -15,12 +15,24 @@
 Cat::Cat()
 {
 	_type = "Chat";
-	std::cout << "1 cat create" << std::endl;
+	std::cout << "constructor cat called" << std::endl;
+}
+
+Cat::Cat(const Cat &cat) : Animal(cat)
+{
+	std::cout << _type << "Copy constructor cat called" << std::endl;
+}
+
+Cat &Cat::operator=(const Cat &cat)
+{
+	_type = cat._type;
+	std::cout << "Assignation operator cat called" << std::endl;
+	return (*this);
 }
 
 Cat::~Cat()
 {
-	
+	std::cout << "destructor cat called" << std::endl;
 } 
 
 void Cat::makeSound() const
